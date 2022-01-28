@@ -46,3 +46,7 @@ def chart_select_view(request):
         'error_message': error_message,
     }
     return render(request, 'products/main.html', context)
+
+
+def add_purchase_view(request):
+    return render(request, 'products/add.html', {})
