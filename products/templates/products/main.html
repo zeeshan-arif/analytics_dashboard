@@ -4,12 +4,17 @@
 
 {% block content %}
 
-    <hr>
-
     <div>
+        
         {% if error_message %}
             {{ error_message }}
-        {% endif %}        
+        {% endif %}
+        
+        {% if request.POST %}
+            {% if graph %}
+                <img src="data:image/png;base64, {{ graph | safe }}">
+            {% endif %}
+        {% endif %}
         <form action="" method="POST" class="ui form">
             {% csrf_token %}
             <div class="field">

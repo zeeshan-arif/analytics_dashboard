@@ -9,6 +9,7 @@ from .models import Product, Purchase
 
 
 def chart_select_view(request):
+    graph = None
     error_message = None
     df = None
 
@@ -31,13 +32,14 @@ def chart_select_view(request):
                     df = [(df['date'] > date_from) & (df['date'] < date_to)]
                     df2 = df.groupby('date', as_index=False)['total_price'].agg('sum')
                 # function to get a graph
-                # get_simple_plot(chart_type, x=, y=, data=, df=,)
+                graph = get_simple_plot(chart_type, x=df2['date'], y=df2['total_price'], data=df)
             else:
                 error_message = 'Please select a chart type to continue'
     else:
         error_message = "No records in the database"
 
     context = {
+        'graph': graph,
         'error_message': error_message,
     }
     return render(request, 'products/main.html', context)

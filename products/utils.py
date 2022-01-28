@@ -31,7 +31,6 @@ def get_simple_plot(chart_type, *args, **kwargs):
     x = kwargs.get('x')
     y = kwargs.get('y')
     data = kwargs.get('data')
-    df = kwargs.get('df')
     if chart_type == 'bar plot':
         title = 'title'
         plt.title(title)
