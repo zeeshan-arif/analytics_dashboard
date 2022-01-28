@@ -1,5 +1,7 @@
+from multiprocessing import context
 from django.shortcuts import render
 from .utils import get_simple_plot
+from .forms import PurchaseForm
 
 import pandas as pd
 
@@ -49,4 +51,9 @@ def chart_select_view(request):
 
 
 def add_purchase_view(request):
-    return render(request, 'products/add.html', {})
+    form = PurchaseForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'products/add.html', context)

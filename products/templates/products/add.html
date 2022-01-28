@@ -5,5 +5,10 @@
 {% block content %}
 
     <h1>Add</h1>
+    <form action="" method="POST" class="ui form">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="ui positive button mtop">Add Sales Data</button>
+    </form>
 
 {% endblock content %}
