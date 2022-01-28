@@ -4,36 +4,38 @@
 
 {% block content %}
 
-<div class="ui modal mymodal">
-    <div class="header">Price Data</div>
-    <div class="ui container">
-      <ul>
-          <li><strong>Count: </strong> {{ price.count }} </li>
-          <li><strong>Mean: </strong> {{ price.mean | floatformat }} </li>
-          <li><strong>Median: </strong> {{ price.median }} </li>
-          <li><strong>Min: </strong> {{ price.min }} </li>
-          <li><strong>Max: </strong> {{ price.max }} </li>
-          <li><strong>Standard Deviation: </strong> {{ price.std | floatformat }} </li>
-      </ul>
+    <div class="ui modal mymodal">
+        <div class="header">Price Data</div>
+        <div class="ui container">
+        <ul>
+            <li><strong>Count: </strong> {{ price.count }} </li>
+            <li><strong>Mean: </strong> {{ price.mean | floatformat }} </li>
+            <li><strong>Median: </strong> {{ price.median }} </li>
+            <li><strong>Min: </strong> {{ price.min }} </li>
+            <li><strong>Max: </strong> {{ price.max }} </li>
+            <li><strong>Standard Deviation: </strong> {{ price.std | floatformat }} </li>
+        </ul>
+        </div>
     </div>
-</div>
 
     <div>
+        <div class="block-center">
 
-        {% if error_message %}
-            <div class="ui negative message">
-                <i class="close icon"></i>
-                <div class="header">
-                    {{ error_message }}
+            {% if error_message %}
+                <div class="ui negative message">
+                    <i class="close icon"></i>
+                    <div class="header">
+                        {{ error_message }}
+                    </div>
                 </div>
-            </div>
-        {% endif %}
-        
-        {% if request.POST %}
-            {% if graph %}
-                <img src="data:image/png;base64, {{ graph | safe }}">
             {% endif %}
-        {% endif %}
+            
+            {% if request.POST %}
+                {% if graph %}
+                    <img src="data:image/png;base64, {{ graph | safe }}">
+                {% endif %}
+            {% endif %}
+        </div>
         <form action="" method="POST" class="ui form">
             {% csrf_token %}
             <div class="field">
@@ -61,9 +63,13 @@
                     </div>
                 </div>
             </div>
-            <button class="ui primary button" type="submit">Select</button>
+            <div class="block-center">
+                <button class="ui primary button" type="submit">Select</button>
+            </div>
         </form>
-        <button class="ui secondary button" id="modal-btn">See summary</button>
+        <div class="block-center">        
+            <button class="ui secondary button" id="modal-btn">See summary</button>
+        </div>
 
     </div>
 
