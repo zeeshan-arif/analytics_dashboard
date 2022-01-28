@@ -1,0 +1,8 @@
+.mymodal {
+    height: 400px !important;
+    top: 100px !important;
+    font-size: 20px !important;
+}
+ul li {
+    margin: 0 0 10px 0;
+}

@@ -4,10 +4,29 @@
 
 {% block content %}
 
+<div class="ui modal mymodal">
+    <div class="header">Price Data</div>
+    <div class="ui container">
+      <ul>
+          <li><strong>Count: </strong> {{ price.count }} </li>
+          <li><strong>Mean: </strong> {{ price.mean | floatformat }} </li>
+          <li><strong>Median: </strong> {{ price.median }} </li>
+          <li><strong>Min: </strong> {{ price.min }} </li>
+          <li><strong>Max: </strong> {{ price.max }} </li>
+          <li><strong>Standard Deviation: </strong> {{ price.std | floatformat }} </li>
+      </ul>
+    </div>
+</div>
+
     <div>
 
         {% if error_message %}
-            <div class="ui red message">{{ error_message }}</div>
+            <div class="ui negative message">
+                <i class="close icon"></i>
+                <div class="header">
+                    {{ error_message }}
+                </div>
+            </div>
         {% endif %}
         
         {% if request.POST %}
@@ -44,6 +63,7 @@
             </div>
             <button class="ui primary button" type="submit">Select</button>
         </form>
+        <button class="ui secondary button" id="modal-btn">See summary</button>
 
     </div>
 
