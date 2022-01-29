@@ -1,11 +1,14 @@
 from django.shortcuts import render
-from .utils import get_simple_plot, get_salesman_from_id
+from .utils import get_simple_plot, get_salesman_from_id, get_image
 from .forms import PurchaseForm
 
 import pandas as pd
 
 from .models import Product, Purchase
 from django.http import HttpResponse
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 
 # Create your views here.
 
@@ -15,9 +18,18 @@ def sales_dist_view(request):
     df['salesman_id'] = df['salesman_id'].apply(get_salesman_from_id)
     df.rename({'salesman_id':'salesman'}, axis=1, inplace=True)
     df['date'] = df['date'].apply(lambda x:x.strftime('%Y-%m-%d'))
-    print(df)
+    #print(df)
+    plt.switch_backend('Agg')
+    plt.xticks(rotation = 45)
+    sns.barplot(x='date', y='total_price', hue='salesman', data=df)
+    plt.tight_layout()
+    graph = get_image()
 
-    return HttpResponse("hello salesman")
+    context = {
+        'graph': graph,
+    }
+
+    return render(request, 'products/sales.html', context)
 
 
 def chart_select_view(request):
