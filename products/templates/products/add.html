@@ -4,7 +4,15 @@
 
 {% block content %}
 
-    <h1>Add</h1>
+    {% if added_message %}
+        <div class="ui success message">
+            <i class="close icon"></i>
+            <div class="header">
+                {{ added_message }}
+            </div>
+        </div>
+    {% endif %}
+    
     <form action="" method="POST" class="ui form">
         {% csrf_token %}
         {{ form }}

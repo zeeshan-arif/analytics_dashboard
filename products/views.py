@@ -1,4 +1,3 @@
-from multiprocessing import context
 from django.shortcuts import render
 from .utils import get_simple_plot
 from .forms import PurchaseForm
@@ -51,9 +50,18 @@ def chart_select_view(request):
 
 
 def add_purchase_view(request):
-    form = PurchaseForm()
+    form = PurchaseForm(request.POST or None)
+    added_message = None
 
+    if form.is_valid():
+        obj = form.save(commit=False)
+        obj.salesman = request.user
+        obj.save()
+
+        form = PurchaseForm()
+        added_message = "The purchase has been added"
     context = {
         'form': form,
+        'added_message': added_message,
     }
     return render(request, 'products/add.html', context)
