@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'products.apps.ProductsConfig',
     'csvs.apps.CsvsConfig',
+    'customers.apps.CustomersConfig',
 ]
 
 MIDDLEWARE = [
