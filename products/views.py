@@ -1,12 +1,23 @@
 from django.shortcuts import render
-from .utils import get_simple_plot
+from .utils import get_simple_plot, get_salesman_from_id
 from .forms import PurchaseForm
 
 import pandas as pd
 
 from .models import Product, Purchase
+from django.http import HttpResponse
 
 # Create your views here.
+
+
+def sales_dist_view(request):
+    df = pd.DataFrame(Purchase.objects.all().values())
+    df['salesman_id'] = df['salesman_id'].apply(get_salesman_from_id)
+    df.rename({'salesman_id':'salesman'}, axis=1, inplace=True)
+    df['date'] = df['date'].apply(lambda x:x.strftime('%Y-%m-%d'))
+    print(df)
+
+    return HttpResponse("hello salesman")
 
 
 def chart_select_view(request):
