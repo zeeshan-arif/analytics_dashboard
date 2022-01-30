@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
+from django.contrib.auth.decorators import login_required
+
 
 def home_view(request):
     return render(request, 'home.html', {})
@@ -17,6 +19,10 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                if request.GET.get('next'):
+                    return redirect(request.GET.get('next'))
+                else:
+                    return redirect('home')
             else:
                 error_message = "Oops, something went wrong..."
     

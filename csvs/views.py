@@ -4,9 +4,12 @@ from .forms import CsvForm
 from .models import Csv
 import csv
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
+@login_required
 def upload_file_view(request):
     error_message = None
     success_message = None
