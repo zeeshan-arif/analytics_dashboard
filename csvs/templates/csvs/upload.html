@@ -21,10 +21,12 @@
         </div>
     {% endif %}
     <h1>Upload</h1>
-    <form action="" method="POST" enctype="multipart/form-data" class="ui form">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" class="ui positive button mtop">Add Data</button>
-    </form>
+    <div class="ui middle aligned center aligned grid" style="margin-top: 4em;">
+        <form action="" method="POST" enctype="multipart/form-data" class="ui form">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="ui positive button mtop">Add Data</button>
+        </form>
+    </div>
 
 {% endblock content %}

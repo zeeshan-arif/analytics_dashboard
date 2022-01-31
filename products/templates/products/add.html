@@ -13,10 +13,12 @@
         </div>
     {% endif %}
     
-    <form action="" method="POST" class="ui form">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" class="ui positive button mtop">Add Sales Data</button>
-    </form>
+    <div class="ui middle aligned center aligned grid" style="margin-top: 4em;">
+        <form action="" method="POST" class="ui form">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="ui positive button mtop">Add Sales Data</button>
+        </form>
+    </div>
 
 {% endblock content %}

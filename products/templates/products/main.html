@@ -32,7 +32,7 @@
             
             {% if request.POST %}
                 {% if graph %}
-                    <img src="data:image/png;base64, {{ graph | safe }}">
+                    <img src="data:image/png;base64, {{ graph | safe }}" class="ui centered fluid huge image">
                 {% endif %}
             {% endif %}
         </div>
