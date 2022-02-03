@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-k9(q^rh@vm99ozt6_(x%07h&re%+(krmbuh+5$047-**=hl-6b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['myanalyticsdashboard.herokuapp.com', '127.0.0.1']
 
